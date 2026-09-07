@@ -13,6 +13,8 @@ function App() {
     });
   }
 
+  function deleteNote() {}
+
   return (
     <div>
       <Header />
@@ -21,9 +23,10 @@ function App() {
         return (
           <Note
             key={index}
-            index={index}
+            id={index}
             title={note.title}
             content={note.content}
+            onDelete={deleteNote}
           />
         );
       })}
