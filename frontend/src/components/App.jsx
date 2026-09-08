@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
+import axiosClient from "../api/axiosClient.js";
 
 function App() {
   const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    async function fetchNotes() {
+      const res = await axiosClient.get("/notes");
+      setNotes(res.data);
+    }
+    fetchNotes();
+  }, []);
 
   function addNote(newNote) {
     setNotes((prevNote) => {
