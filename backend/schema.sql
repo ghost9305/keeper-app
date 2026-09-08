@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   id         SERIAL PRIMARY KEY,
-  google_id  VARCHAR(255) UNIQUE NOT NULL,
+  google_id  VARCHAR(255) UNIQUE,
+  password_hash VARCHAR(255),
   email      VARCHAR(255) UNIQUE NOT NULL,
   name       VARCHAR(255),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -17,6 +18,11 @@ CREATE TABLE IF NOT EXISTS notes (
 );
 
 CREATE INDEX idx_notes_user_id ON notes (user_id);
+
+ALTER TABLE users
+  ADD CONSTRAINT chk_auth_method
+  CHECK (google_id IS NOT NULL OR password_hash IS NOT NULL);
+
 
 -- adding test-user on the table
 INSERT INTO users (google_id, email, name)
