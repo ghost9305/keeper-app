@@ -30,6 +30,18 @@ app.post("/notes", async (req, res) => {
   res.status(201).json(result.rows[0]);
 });
 
+app.delete("/notes/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query(
+    "DELETE FROM notes WHERE id = $1 AND user_id = $2 RETURNING id",
+    [id, test_user_id],
+  );
+  if (result.rowCount === 0) {
+    return res.status(404).json({ error: "note not found!" });
+  }
+  res.status(204).send();
+});
+
 app.listen(Number(process.env.PORT), () => {
   console.log(`Server is running on port ${Number(process.env.PORT)}`);
 });

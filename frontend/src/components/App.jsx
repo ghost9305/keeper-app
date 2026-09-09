@@ -16,29 +16,39 @@ function App() {
     fetchNotes();
   }, []);
 
-  function addNote(newNote) {
-    setNotes((prevNote) => {
-      return [...prevNote, newNote];
-    });
+  async function addNote(newNote) {
+    try {
+      const res = await axiosClient.post("/notes", newNote);
+      setNotes((prevNote) => {
+        return [...prevNote, res.data];
+      });
+    } catch (err) {
+      console.error("Error posting new note", err);
+    }
   }
 
-  function deleteNote(id) {
-    setNotes((prevNote) => {
-      return prevNote.filter((note, index) => {
-        return index !== id;
+  async function deleteNote(id) {
+    try {
+      await axiosClient.delete(`/notes/${id}`);
+      setNotes((prevNote) => {
+        return prevNote.filter((note) => {
+          return note.id !== id;
+        });
       });
-    });
+    } catch (err) {
+      console.error("Error deleting note", err);
+    }
   }
 
   return (
     <div>
       <Header />
       <CreateArea onAdd={addNote} />
-      {notes.map((note, index) => {
+      {notes.map((note) => {
         return (
           <Note
-            key={index}
-            id={index}
+            key={note.id}
+            id={note.id}
             title={note.title}
             content={note.content}
             onDelete={deleteNote}
