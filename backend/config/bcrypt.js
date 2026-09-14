@@ -25,7 +25,7 @@ export function hashPassword(password) {
 }
 
 export async function verifyPassword(password, hash) {
-  if (password !== "string") {
+  if (typeof password !== "string") {
     return false;
   }
   if (!hash) {

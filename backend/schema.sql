@@ -13,13 +13,14 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS notes (
-  id      SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  title   VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL
+  id         SERIAL PRIMARY KEY,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title      VARCHAR(255) NOT NULL,
+  content    TEXT NOT NULL
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX idx_notes_user_id ON notes (user_id);
+CREATE INDEX IF NOT EXISTS idx_notes_user_id ON notes (user_id);
 
 ALTER TABLE users
   ADD CONSTRAINT chk_auth_method
