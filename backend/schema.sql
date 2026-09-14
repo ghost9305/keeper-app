@@ -37,3 +37,16 @@ VALUES (
     'Test Note',
     'This is test content for local dev.'
 );
+
+-- table.sql from connect-pg-simple package
+-- automatically created with createTableIfMissing option
+CREATE TABLE IF NOT EXISTS "session" (
+  "sid" VARCHAR NOT NULL COLLATE "default",
+  "sess" JSON NOT NULL,
+  "expire" TIMESTAMP(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
