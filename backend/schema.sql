@@ -1,8 +1,10 @@
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS users;
 
+CREATE EXTENSION IF NOT EXISTS citext;
+
 CREATE TABLE IF NOT EXISTS users (
-  id.           SERIAL PRIMARY KEY,
+  id            SERIAL PRIMARY KEY,
   google_id     VARCHAR(255) UNIQUE,
   password_hash VARCHAR(255),
   email         VARCHAR(255) UNIQUE NOT NULL,
