@@ -39,14 +39,14 @@ VALUES (
 );
 
 -- table.sql from connect-pg-simple package
--- automatically created with createTableIfMissing option
+-- totally optional, i just put it here for reference
+-- automatically created with createTableIfMissing option on app.use(session()) config
 CREATE TABLE IF NOT EXISTS "session" (
   "sid" VARCHAR NOT NULL COLLATE "default",
   "sess" JSON NOT NULL,
   "expire" TIMESTAMP(6) NOT NULL
 )
-WITH (OIDS=FALSE);
 
-ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "session" ADD CONSTRAINT IF NOT EXISTS "session_pkey" PRIMARY KEY ("sid");
 
-CREATE INDEX "IDX_session_expire" ON "session" ("expire");
+CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");

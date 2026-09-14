@@ -4,6 +4,7 @@ import cors from "cors";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./config/db.js";
+import passport from "passport";
 import noteRoutes from "./route/note.js";
 
 const app = express();
@@ -37,6 +38,9 @@ app.use(
     },
   }),
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/notes", noteRoutes);
 
