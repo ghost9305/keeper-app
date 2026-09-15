@@ -6,6 +6,7 @@ import connectPgSimple from "connect-pg-simple";
 import { pool } from "./config/db.js";
 import passport from "passport";
 import noteRoutes from "./route/note.js";
+import authRoutes from "./route/auth.js";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/auth", authRoutes);
 app.use("/notes", noteRoutes);
 
 app.use((err, req, res, next) => {
