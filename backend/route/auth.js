@@ -16,16 +16,16 @@ router.post("/register", async (req, res, next) => {
     typeof rawName === "string" ? rawName.trim().slice(0, 255) || null : null;
 
   if (!EMAIL_PATTERN.test(email)) {
-    res.status(400).json({ error: "a valid email is required!" });
+    return res.status(400).json({ error: "a valid email is required!" });
   }
 
   if (email.length > 255) {
-    res.status(400).json({ error: "email is too long!" });
+    return res.status(400).json({ error: "email is too long!" });
   }
 
   const passwordError = validatePassword(password);
   if (passwordError) {
-    res.status(400).json({ error: passwordError });
+    return res.status(400).json({ error: passwordError });
   }
 
   try {
