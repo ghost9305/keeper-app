@@ -1,11 +1,39 @@
 import { useState } from "react";
+import axiosClient from "../api/axiosClient";
 
-function Login() {
+function Login(props) {
   const [fields, setFields] = useState({ name: "", email: "", password: "" });
   const [isRegistering, setIsRegistering] = useState(false);
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function toggleMode() {
     setIsRegistering((prev) => !prev);
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFields((prev) => {
+      return { ...prev, [name]: value };
+    });
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const endpoint = isRegistering ? "/auth/register" : "/auth/login";
+      const payload = isRegistering
+        ? fields
+        : { email: fields.email, password: fields.password };
+
+      const res = await axiosClient.post(endpoint, payload);
+      props.onLogin(res.data);
+    } catch (err) {
+      setError(err.response?.data?.error ?? "Something went wrong. Try again.");
+    }
   }
 
   return (
@@ -16,13 +44,14 @@ function Login() {
           ? "Create an account to start saving notes."
           : "Sign in to see and save your own notes."}
       </p>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         {isRegistering && (
           <input
             type="text"
             name="name"
             placeholder="name"
             value={fields.name}
+            onChange={handleChange}
             autoComplete="name"
             required
           />
@@ -32,6 +61,7 @@ function Login() {
           name="email"
           placeholder="email"
           value={fields.email}
+          onChange={handleChange}
           autoComplete="email"
           required
         />
@@ -40,11 +70,22 @@ function Login() {
           name="password"
           placeholder="password"
           value={fields.password}
+          onChange={handleChange}
           autoComplete={isRegistering ? "new-password" : "current-password"}
           required
         />
-        <button type="submit">
-          {isRegistering ? "Create account" : "Sign In"}
+
+        {error && (
+          <p className="login-error" role="alert">
+            {error}
+          </p>
+        )}
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting
+            ? "Working..."
+            : isRegistering
+              ? "Create account"
+              : "Sign In"}
         </button>
       </form>
 

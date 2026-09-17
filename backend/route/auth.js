@@ -22,6 +22,9 @@ router.post("/register", async (req, res, next) => {
   if (email.length > 255) {
     return res.status(400).json({ error: "email is too long!" });
   }
+  if (!name) {
+    return res.status(400).json({ error: "name is required!" });
+  }
 
   const passwordError = validatePassword(password);
   if (passwordError) {
@@ -29,10 +32,10 @@ router.post("/register", async (req, res, next) => {
   }
 
   try {
-    const passwordHash = hashPassword(password);
+    const passwordHash = await hashPassword(password);
 
     const result = await pool.query(
-      "INSERT INTO users (email, name, password_hash) VALUES ($1,$2,$3) RETURNING (id, google_id, email, name)",
+      "INSERT INTO users (email, name, password_hash) VALUES ($1,$2,$3) RETURNING id, google_id, email, name",
       [email, name, passwordHash],
     );
     const user = result.rows[0];
@@ -42,7 +45,7 @@ router.post("/register", async (req, res, next) => {
     });
   } catch (err) {
     if (err.code === "23505") {
-      res.status(409).json({ error: "email already registered" });
+      return res.status(409).json({ error: "email already registered" });
     }
     next(err);
   }
@@ -74,7 +77,7 @@ router.post("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     req.session.destroy(() => {
-      res.clearCookie("connect-sid");
+      res.clearCookie("connect.sid");
       res.status(204).send();
     });
   });

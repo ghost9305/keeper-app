@@ -190,3 +190,16 @@ form.create-note button {
   background: none;
   color: #e0aa0f;
 }
+
+.login-error {
+  background: #fdecea;
+  border-radius: 4px;
+  /* Colour alone shouldn't be the only signal; the text says what's wrong. */
+  color: #a12622;
+  font-size: 0.9em;
+  /* .login p sets a 24px bottom margin that would push this away from the
+     field it refers to. */
+  margin: 0;
+  padding: 10px;
+  text-align: left;
+}
