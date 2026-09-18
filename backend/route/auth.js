@@ -1,8 +1,8 @@
 import express from "express";
 import passport from "passport";
 import { pool } from "../config/db.js";
-import { hashPassword, validatePassword } from "../config/bcrypt";
-import { normalizeEmail } from "../config/passport";
+import { hashPassword, validatePassword } from "../config/bcrypt.js";
+import { normalizeEmail } from "../config/passport.js";
 
 const router = express.Router();
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
-import Login from "./components/Login";
 
 const container = document.getElementById("root");
 
@@ -9,7 +8,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Login />
+    <App />
   </React.StrictMode>,
 );
 

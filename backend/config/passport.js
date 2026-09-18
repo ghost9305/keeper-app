@@ -2,7 +2,7 @@ import "dotenv/config";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { pool } from "./db.js";
-import { verifyPassword } from "./bcrypt";
+import { verifyPassword } from "./bcrypt.js";
 
 const USER_COLUMNS = "id, google_id, email, name";
 

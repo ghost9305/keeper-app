@@ -17,12 +17,39 @@ header {
   margin: auto -16px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 header h1 {
   color: #fff;
   font-family: "McLaren", cursive;
   font-weight: 200;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.header-user button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95em;
+  padding: 6px 12px;
+}
+
+.header-user button:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 footer {
@@ -202,4 +229,10 @@ form.create-note button {
   margin: 0;
   padding: 10px;
   text-align: left;
+}
+
+.auth-status {
+  color: #666;
+  margin-top: 60px;
+  text-align: center;
 }

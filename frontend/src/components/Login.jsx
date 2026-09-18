@@ -33,6 +33,8 @@ function Login(props) {
       props.onLogin(res.data);
     } catch (err) {
       setError(err.response?.data?.error ?? "Something went wrong. Try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -80,6 +82,7 @@ function Login(props) {
             {error}
           </p>
         )}
+
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting
             ? "Working..."
