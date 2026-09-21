@@ -206,3 +206,9 @@ form.create-note button {
   text-align: left;
 }
 
+.auth-status {
+  color: #666;
+  margin-top: 60px;
+  text-align: center;
+}
+
