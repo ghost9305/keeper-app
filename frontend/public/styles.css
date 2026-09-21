@@ -101,3 +101,50 @@ form.create-note button {
   cursor: pointer;
   outline: none;
 }
+
+.login {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  margin: 60px auto;
+  max-width: 480px;
+  padding: 32px;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-form input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.login-form input:focus {
+  border-color: #f5ba13;
+  outline: none;
+}
+
+.login button {
+  background: #f5ba13;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 12px 24px;
+}
+
+.login button:hover {
+  background: #e0aa0f;
+}
