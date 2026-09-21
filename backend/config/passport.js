@@ -4,7 +4,7 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { verifyPassword } from "./bcrypt.js";
 import { pool } from "./db.js";
 
-const USER_COLUMNS = "id, google_id, email, name";
+export const USER_COLUMNS = "id, google_id, email, name";
 
 export function normalizeEmail(email) {
   return String(email ?? "").trim.toLowerCase();
