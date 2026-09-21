@@ -17,6 +17,10 @@ header {
   margin: auto -16px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 header h1 {
@@ -112,6 +116,17 @@ form.create-note button {
   text-align: center;
 }
 
+.login h2 {
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  margin-bottom: 12px;
+}
+
+.login p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -148,3 +163,46 @@ form.create-note button {
 .login button:hover {
   background: #e0aa0f;
 }
+
+.login button:disabled {
+  background: #f0d089;
+  box-shadow: none;
+  cursor: default;
+}
+
+.login-toggle {
+  color: #666;
+  font-size: 0.9em;
+  margin: 16px 0 0;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #f5ba13;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.login .link-button:hover {
+  background: none;
+  color: #e0aa0f;
+}
+
+.login-error {
+  background: #fdecea;
+  border-radius: 4px;
+  /* Colour alone shouldn't be the only signal; the text says what's wrong. */
+  color: #a12622;
+  font-size: 0.9em;
+  /* .login p sets a 24px bottom margin that would push this away from the
+     field it refers to. */
+  margin: 0;
+  padding: 10px;
+  text-align: left;
+}
+
