@@ -7,7 +7,9 @@ import { pool } from "./db.js";
 export const USER_COLUMNS = "id, google_id, email, name";
 
 export function normalizeEmail(email) {
-  return String(email ?? "").trim.toLowerCase();
+  return String(email ?? "")
+    .trim()
+    .toLowerCase();
 }
 
 passport.use(

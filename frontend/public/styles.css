@@ -212,3 +212,25 @@ form.create-note button {
   text-align: center;
 }
 
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.header-user button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95em;
+  padding: 6px 12px;
+}
+
+.header-user button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

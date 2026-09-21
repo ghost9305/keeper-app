@@ -8,7 +8,7 @@ function Header(props) {
         Keeper
       </h1>
       {props.user && (
-        <div>
+        <div className="header-user">
           <span>{props.user.name || props.user.email}</span>
           <button onClick={props.onLogout}>Log Out</button>
         </div>

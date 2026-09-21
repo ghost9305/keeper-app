@@ -1,8 +1,8 @@
 import e from "express";
 import passport from "passport";
-import { normalizeEmail } from "../config/passport";
-import { hashPassword, validatePassword } from "../config/bcrypt";
-import { USER_COLUMNS } from "../config/passport";
+import { normalizeEmail } from "../config/passport.js";
+import { hashPassword, validatePassword } from "../config/bcrypt.js";
+import { USER_COLUMNS } from "../config/passport.js";
 
 const router = e.Router();
 
