@@ -76,3 +76,5 @@ router.post("/logout", (req, res, next) => {
     });
   });
 });
+
+export default router;
